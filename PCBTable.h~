@@ -1,0 +1,22 @@
+#ifndef PCBTABLE_H
+#define PCBTABLE_H
+#include "process.h"
+#include <vector>
+using namespace std;
+
+class PCBTable{
+private:
+
+  vector<process*> table;
+
+public:
+
+  PCBTable();//Initializee the table  
+  process* getProcess();
+  process* getProcess(int);
+
+
+  //  void printTable();
+
+};
+#endif

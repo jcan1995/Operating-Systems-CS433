@@ -1,0 +1,15 @@
+#ifndef PROCESS_H
+#define PROCESS_H
+#include <iostream>
+using namespace std;
+
+struct process{
+  int ID;                                                                                    
+  string state;
+  int priority; 
+  bool inQueue;
+  process* next;  
+};
+
+
+#endif

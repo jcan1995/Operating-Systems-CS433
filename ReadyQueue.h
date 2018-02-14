@@ -5,6 +5,7 @@
 class ReadyQueue{
   
  private:
+  //  int highestPriority = 100;
   static const int tableSize = 50;
   int count = 0;  
   process* hashTable[tableSize];

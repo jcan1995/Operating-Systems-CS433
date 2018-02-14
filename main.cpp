@@ -12,7 +12,6 @@ const int iterations = 1000000;
 
 
 int probability(){
-  srand(time(NULL));
   return rand() % 2 + 1;//Between 2 and 1
 }
 
@@ -73,26 +72,27 @@ void test2(){
   PCBTable table;                                                                                               
   ReadyQueue q;                                                                                                 
                                                                                                                 
-  auto start = std::chrono::system_clock::now();                                                                
-  //srand(time(NULL));
-                                                                                                   
+  //  auto start = std::chrono::system_clock::now();                                                                
+  srand(time(NULL));
+  auto start = std::chrono::system_clock::now();                                                                                                                                
   for(int i = 0; i < iterations;i++){                                                                           
-    if(probability() == 1){                                                                                     
+    //    if(rand() % 2 == 1){                                                                                     
+    if(rand() % 2 == 1){
+
       removed++;                                                                                                
       q.removeHighestProc();                                                                                    
     }                                                                                                           
     else{                                                                                                       
       process *p = table.getProcess();                                                                          
       //      if(p == NULL)                                                                                     
-      //        break;                                                                                          
+      //break;                                                                                          
       //      else                                                                                              
       added++;                                                                                                  
       if(p!= NULL)                                                                                              
         q.insertProc(p);//Insert from PCBTable unless they're already added TODO                                
                                                                                                                 
     }                                         
-}                                                                                                             
-                                                                                                                
+}                                                                                                           
   auto end = std::chrono::system_clock::now();                                                                  
   std::chrono::duration<double> elapsed_seconds = end - start;                                                  
   std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";                                            

@@ -29,11 +29,21 @@ void ReadyQueue::insertProc(process* p){//insert the processes based on their pr
   int index = hash(p -> priority);
   //If there is currently noprocess occupying this index, fill it with the new process
   if(hashTable[index] -> state == "NONE"){
+    
     p -> state = "READY";
     p -> inQueue = true;
     hashTable[index] = p;
     count++;
+    return;
   }else{//Else a collision occurred, thus we start a linked list in the index.
+    
+    p -> next = hashTable[index];
+    p -> state = "READY";                                                                                                                                                 
+    p -> inQueue = true;   
+    hashTable[index] = p;
+    count++;
+    return;
+    /*  
     process *ptr = hashTable[index];
     p -> state = "READY";
     p -> inQueue = true;
@@ -44,7 +54,8 @@ void ReadyQueue::insertProc(process* p){//insert the processes based on their pr
     //Insert the process at the end of the linkedlist in its' respective index.
     ptr -> next = p;
     p -> next = NULL;
-    count++;
+*/
+    //count++;
   }
 }
 
@@ -104,7 +115,7 @@ process* ReadyQueue:: removeHighestProc(){
       return node;
     }
   }
-
+  
   return NULL;//There is nothing in the list.
 }
 
